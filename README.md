@@ -9,6 +9,14 @@ Github Action の記述は下記にあります．
 
 [.github/workflows/release.yml](.github/workflows/release.yml)
 
+## GitHub の設定
+
+上記の Github Action を使う場合，レポジトリの [Settings] - [Actions] - [General] - [Workflow permissions]]
+で，「Read and write permissions」を選択しておく必要があります．
+
+この設定がされていないと，「Resource not accessible by integration」というエラーが派生して，
+実行が途中で止まります．
+
 
 ## 前提・想定
 
