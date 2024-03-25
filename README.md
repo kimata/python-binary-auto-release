@@ -14,7 +14,7 @@ Github Action の記述は下記にあります．
 上記の Github Action を使う場合，レポジトリの [Settings] - [Actions] - [General] - [Workflow permissions]]
 で，「Read and write permissions」を選択しておく必要があります．
 
-この設定がされていないと，「Resource not accessible by integration」というエラーが派生して，
+この設定がされていないと，「Resource not accessible by integration」というエラーが発生して，
 実行が途中で止まります．
 
 
@@ -31,7 +31,7 @@ Github Action の記述は下記にあります．
 - Windows と Linux (Ubunti) 向けのバイナリを生成
 - 「v0.1.0」のようなタグを打った時にバイナリファイルを生成
 
-## 変換対象のスクリプトの動作
+### 変換対象のスクリプトの動作
 
 実行ファイルに変換するスクリプトは，YAML ファイルを読み込んで，
 その中で定義された message を出力するものになっています．
@@ -48,7 +48,7 @@ Hellow World!
 設定ファイルを同梱しています．
 
 
-## 生成される実行ファイル
+### 生成される実行ファイル
 
 Linux の向けの場合，Github からダウンロードした後，下記のようにして実行できるようになっています．
 
