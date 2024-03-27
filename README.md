@@ -59,4 +59,32 @@ Linux の向けの場合，Github からダウンロードした後，下記の�
 Hellow World!
 ```
 
+## コード署名
+
+[lando/code-sign-action](https://github.com/lando/code-sign-action) を使って，
+自動的に Windows 用の実行ファイル(\*.exe)に署名できるようになっています．
+
+### Certificate の準備
+
+ちゃんと署名する場合は，然るべき手続きをして Cetificate (*.pfx) [^1]を用意します．
+そうではなく，オレオレ証明書でとりあえず署名したい場合，[gen_certificate.sh](gen_certificate.sh) を実行すると，
+必要なファイルが生成されます．パスワードはなんでも良いですが，覚えおきます．
+
+使うのは，Cetificate (\*.pfx) を Base64 でエンコードしたテキストファイル (\*.pfx.txt) です．
+
+[^1]: コード署名の技術に明るくないので，「Certificate」等の用語の使い方が正しくない可能性があります．すみません．
+
+### GitHub Secrets の設定
+
+GitHub リポジトリの，[Settings] - [Secrets and variables] - [Actions] - [Repository secrets] の
+「New repository secrets」をクリックして下記の 2 つの変数を定義します．
+
+<dl>
+  <dt>CERTIFICATE</dt>
+  <dd>Cetificate (\*.pfx) を Base64 でエンコードしたテキストファイル (\*.pfx.txt) の中身</dd>
+  <dt>PASSWORD</dt>
+  <dd>Certificate を生成した時に使ったパスワード</dd>
+</dl>
+
+ここまで設定すれば，tag を push すると，実行ファイル作成後にコード署名処理が行われるようになります．
 

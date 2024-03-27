@@ -85,6 +85,8 @@ jobs:
 
       - name: Sign code
         if: (runner.os == 'Windows') && (steps.check_secret.outputs.secret_exists == 'true')
+        # 所謂オレオレ証明書ではない場合，Fork 元の lando/code-sign-action を使うのが良いです．
+        # オリジナルの場合，署名の検証も行います．
         uses: kimata/code-sign-action@v1
         with:
           file: build/*.exe
