@@ -26,7 +26,7 @@ jobs:
   
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-14]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -67,6 +67,9 @@ jobs:
           product-name: ${{ env.PROJECT_NAME }}
           file-version: ${{ needs.prepare.outputs.version }}
           product-version: ${{ needs.prepare.outputs.version }}
+
+          macos-app-name: ${{ env.PROJECT_NAME }}
+          macos-create-app-bundle: false
 
           standalone: true
           onefile: true
@@ -136,12 +139,14 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-14]
         include:
           - os: ubuntu-latest
             label: ubuntu_x64
           - os: windows-latest
             label: windows_x64
+          - os: macos-14
+            label: macos_apple
 
     runs-on: ubuntu-latest
 
@@ -162,7 +167,7 @@ jobs:
           chmod -f +x ${{ env.ARCHIVE_NAME }}/*.bin || true
 
       - name: Archive binary
-        run: zip --recurse-paths ${{ env.ARCHIVE_NAME }}.zip ${{ env.ARCHIVE_NAME }}
+        run: zip --junk-paths --recurse-paths ${{ env.ARCHIVE_NAME }}.zip ${{ env.ARCHIVE_NAME }}
 
       - name: Upload Release Asset
         id: upload-release-asset
