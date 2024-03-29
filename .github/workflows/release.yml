@@ -96,8 +96,10 @@ jobs:
           certificate-data: ${{ secrets.CERTIFICATE }}
           certificate-password: ${{ secrets.PASSWORD }}
 
-      - name: Copy config
-        run: cp config.example.yaml build/config.example.yaml
+      - name: Copy bundle file
+        run: |
+          cp README.md build/README.md
+          cp config.example.yaml build/config.example.yaml
           
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
